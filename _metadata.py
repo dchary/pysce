@@ -1,0 +1,6 @@
+__version__ = "0.0.1"
+__author__ = "Daniel Charytonowicz"
+__email__ = "daniel.charytonowicz@icahn.mssm.edu"
+__institution__ = "Icahn School of Medicine at Mount Sinai"
+__laboratory__ = "Robert P. Sebra"
+__date__ = "December 28th 2021"
