@@ -276,8 +276,8 @@ def get_batch_size(
     sysmem = min(map(lambda x : get_meminfo(x, 'used' if system == 'GPU' else 'free'), devices))
     
     # Get the lowest power of 2 value
-    batch_size = math.floor((((1 - memory_overhead_ratio)) * sysmem) 
-                                // (4 * 4 * (ppi_shape[0] * ppi_shape[1])))
+    batch_size = 2 ** math.floor(math.log2((((1 - memory_overhead_ratio)) * sysmem) 
+                                / (4 * 4 * (ppi_shape[0] * ppi_shape[1]))))
     
     return batch_size
 
@@ -433,9 +433,6 @@ def create_dataset(
     return dataset, dataset_host
 
 
-'''
-Executes with an additional batch dimension to speed up processing
-'''
 @tf.function
 def batch_compute_entropy(
     exp : tf.Tensor,
